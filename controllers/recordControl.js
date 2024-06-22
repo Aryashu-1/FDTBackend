@@ -26,16 +26,26 @@ async function createRecord(req,res){
 async function getRecords(req,res){
 
     try {
-        
         const filters = req.query;
-        const all_records = await record.find(filters)
-
-
-
-
-
+        const all_records = await record.find(filters).populate([{
+            path: 'event',
+            populate:[
+            {
+                path: 'domain',
+            },
+            {
+                path: 'venue' 
+            }
+            ]
+        },
+        {
+            path : 'user'
+        }
+    ])
+    
+        return res.status(200).send(all_records);
     } catch (error) {
-        return res.status(400).send(null)
+        return res.status(400).send(null);
     }
 
 }

@@ -1,5 +1,6 @@
 const { connectToDataBase } = require("./connection");
 const express = require("express");
+const {corsMiddle} = require("./middlewares/cors.js")
 require("dotenv").config();
 
 // Define our Express Instance
@@ -14,6 +15,8 @@ process.env.STATUS === "dev"
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(corsMiddle)
+
 
 
 // Connecting to Database returns a promise and prints an error if occured

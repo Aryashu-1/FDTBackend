@@ -18,6 +18,10 @@ const recordSchema = new mongoose.Schema({
   },
   score: {
     type: Number
+  },
+  assessmentYear:{
+    type : String,
+    required : true
   }
 });
 
